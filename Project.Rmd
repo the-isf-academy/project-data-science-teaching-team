@@ -14,16 +14,87 @@ jupyter:
 
 ### Project ideas
 
-
+<!-- #region -->
 Mass Mobilization around the World https://dataverse.harvard.edu/dataverse/MMdata
 Ready made visualizations: https://massmobilization.shinyapps.io/Yearly_MM_Protests_and_Duration/
 
 
-Hong Kong Protestor Demographics
-https://sites.google.com/view/antielabsurvey-eng/data?authuser=0#h.p_-8TgqHltp1_c
+* Direct students to a limited collection of datasets
+* Have them ask a question that the dataset could answer
+* Answer the data quantitatively with the dataset
+* Also do some minor qualitative research about the question to contextualize the quant answer
+
+<!-- #endregion -->
+
+How does violence impact protests?
+* Quantitative
+    * Protestor violence vs. length of protest
+    * Protestor violence vs. outcome
+* Qualitative
+    * What comes first -- police brutality? or violence? Case study of Hong Kong: reports about police brutality?
 
 
-Other Hong Kong data? https://www.info.gov.hk/gia/general/201901/03/P2019010300255.htm
+Next tasks:
+    1. Import the data into a dataframe 
+    2. Figure out what kinds of graphs we should visualize. 
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+```
+
+```{python}
+df = pd.read_csv('mmALL_020619_v15.tab', sep='\t')
+```
+
+```{python}
+df
+```
+
+```{python}
+for col in df.columns: 
+    print(col)
+```
+
+```{python}
+x_var_label = "startyear"
+```
+
+```{python}
+df_one_col = df[x_var_label]  # creating new dataframe with only 1 column
+df_one_col= df_one_col.dropna() # removing rows with no response (NaN)
+years_list = [x for x in df_one_col.values]  # copying data from dataframe to list
+```
+
+```{python}
+years_dict = {
+}
+
+for year in years_list:
+    if year in years_dict:
+        years_dict[year] = years_dict[year] + 1
+    else:
+        years_dict[year] = 1
+```
+
+```{python}
+# index = 1990 + np.arange(len(years_dict))
+
+rects1 = plt.bar(years_dict.keys(), years_dict.values(), alpha=opacity)
+
+plt.xlabel('Years')
+plt.ylabel('Number of Protests')
+```
+
+```{python}
+plt.scatter(years_dict.keys(), years_dict.values(),c='green',alpha=0.5)
+plt.scatter(years_dict.keys(), years_dict.values(),c='green',alpha=0.5)
+plt.xlabel('Years')
+plt.ylabel('Number of Protests')
+```
 
 ```{python}
 

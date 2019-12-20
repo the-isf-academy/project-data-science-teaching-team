@@ -14,105 +14,101 @@ jupyter:
 
 <!-- #region {"toc": true} -->
 <h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#時代革命:-A-Data-Science-Investigation-About-Past-Protests-Around-the-World" data-toc-modified-id="時代革命:-A-Data-Science-Investigation-About-Past-Protests-Around-the-World-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>時代革命: A Data Science Investigation About Past Protests Around the World</a></span><ul class="toc-item"><li><ul class="toc-item"><li><ul class="toc-item"><li><span><a href="#(Work-in-Progress)-A-very-slow-photo-gallery" data-toc-modified-id="(Work-in-Progress)-A-very-slow-photo-gallery-1.0.0.1"><span class="toc-item-num">1.0.0.1&nbsp;&nbsp;</span>(Work in Progress) A very slow photo gallery</a></span></li></ul></li></ul></li><li><span><a href="#Overarching-Question:-How-does-violence-impact-mass-mobilization?" data-toc-modified-id="Overarching-Question:-How-does-violence-impact-mass-mobilization?-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Overarching Question: How does violence impact mass mobilization?</a></span></li><li><span><a href="#About-the-data-sets" data-toc-modified-id="About-the-data-sets-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>About the data sets</a></span></li><li><span><a href="#Subquestions" data-toc-modified-id="Subquestions-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>Subquestions</a></span></li></ul></li><li><span><a href="#Methods-and-Results" data-toc-modified-id="Methods-and-Results-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Methods and Results</a></span><ul class="toc-item"><li><span><a href="#First-Research-Question:-Are-violent-protests-on-the-rise-in-the-world?" data-toc-modified-id="First-Research-Question:-Are-violent-protests-on-the-rise-in-the-world?-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>First Research Question: Are violent protests on the rise in the world?</a></span><ul class="toc-item"><li><span><a href="#Methods" data-toc-modified-id="Methods-2.1.1"><span class="toc-item-num">2.1.1&nbsp;&nbsp;</span>Methods</a></span></li><li><span><a href="#Results" data-toc-modified-id="Results-2.1.2"><span class="toc-item-num">2.1.2&nbsp;&nbsp;</span>Results</a></span></li></ul></li><li><span><a href="#Second-Research-Question-[Edit-me]" data-toc-modified-id="Second-Research-Question-[Edit-me]-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Second Research Question [Edit me]</a></span><ul class="toc-item"><li><span><a href="#Methods" data-toc-modified-id="Methods-2.2.1"><span class="toc-item-num">2.2.1&nbsp;&nbsp;</span>Methods</a></span></li><li><span><a href="#Results" data-toc-modified-id="Results-2.2.2"><span class="toc-item-num">2.2.2&nbsp;&nbsp;</span>Results</a></span></li></ul></li><li><span><a href="#Third-Research-Question-[Edit-me]" data-toc-modified-id="Third-Research-Question-[Edit-me]-2.3"><span class="toc-item-num">2.3&nbsp;&nbsp;</span>Third Research Question [Edit me]</a></span><ul class="toc-item"><li><span><a href="#Methods" data-toc-modified-id="Methods-2.3.1"><span class="toc-item-num">2.3.1&nbsp;&nbsp;</span>Methods</a></span></li><li><span><a href="#Results" data-toc-modified-id="Results-2.3.2"><span class="toc-item-num">2.3.2&nbsp;&nbsp;</span>Results</a></span></li></ul></li></ul></li><li><span><a href="#Discussion" data-toc-modified-id="Discussion-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Discussion</a></span></li></ul></div>
+<div class="toc"><ul class="toc-item"><li><span><a href="#時代革命:-A-Data-Science-Investigation-About-Past-Protests-Around-the-World" data-toc-modified-id="時代革命:-A-Data-Science-Investigation-About-Past-Protests-Around-the-World-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>時代革命: A Data Science Investigation About Past Protests Around the World</a></span><ul class="toc-item"><li><span><a href="#Overarching-Question:-How-does-violence-impact-mass-mobilization?" data-toc-modified-id="Overarching-Question:-How-does-violence-impact-mass-mobilization?-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Overarching Question: How does violence impact mass mobilization?</a></span></li><li><span><a href="#About-the-data-sets" data-toc-modified-id="About-the-data-sets-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>About the data sets</a></span></li><li><span><a href="#Subquestions" data-toc-modified-id="Subquestions-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>Subquestions</a></span></li></ul></li><li><span><a href="#Methods-and-Results" data-toc-modified-id="Methods-and-Results-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Methods and Results</a></span><ul class="toc-item"><li><span><a href="#First-Research-Question:-Are-violent-protests-on-the-rise-in-the-world?" data-toc-modified-id="First-Research-Question:-Are-violent-protests-on-the-rise-in-the-world?-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>First Research Question: Are violent protests on the rise in the world?</a></span><ul class="toc-item"><li><span><a href="#Methods" data-toc-modified-id="Methods-2.1.1"><span class="toc-item-num">2.1.1&nbsp;&nbsp;</span>Methods</a></span></li><li><span><a href="#Results" data-toc-modified-id="Results-2.1.2"><span class="toc-item-num">2.1.2&nbsp;&nbsp;</span>Results</a></span></li></ul></li><li><span><a href="#Second-Research-Question:-Do-some-regions-of-the-world-have-more-violent-protests-than-others?" data-toc-modified-id="Second-Research-Question:-Do-some-regions-of-the-world-have-more-violent-protests-than-others?-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Second Research Question: Do some regions of the world have more violent protests than others?</a></span><ul class="toc-item"><li><span><a href="#Methods" data-toc-modified-id="Methods-2.2.1"><span class="toc-item-num">2.2.1&nbsp;&nbsp;</span>Methods</a></span></li><li><span><a href="#Results" data-toc-modified-id="Results-2.2.2"><span class="toc-item-num">2.2.2&nbsp;&nbsp;</span>Results</a></span></li></ul></li><li><span><a href="#Second-Research-Question:-3.-How-is-protest-violence-correlated-with-protest-length?" data-toc-modified-id="Second-Research-Question:-3.-How-is-protest-violence-correlated-with-protest-length?-2.3"><span class="toc-item-num">2.3&nbsp;&nbsp;</span>Second Research Question: 3. How is protest violence correlated with protest length?</a></span><ul class="toc-item"><li><span><a href="#Methods" data-toc-modified-id="Methods-2.3.1"><span class="toc-item-num">2.3.1&nbsp;&nbsp;</span>Methods</a></span></li><li><span><a href="#Results" data-toc-modified-id="Results-2.3.2"><span class="toc-item-num">2.3.2&nbsp;&nbsp;</span>Results</a></span></li></ul></li><li><span><a href="#Third-Research-Question:-How-do-Hong-Kong-protestors-feel-about-violence?" data-toc-modified-id="Third-Research-Question:-How-do-Hong-Kong-protestors-feel-about-violence?-2.4"><span class="toc-item-num">2.4&nbsp;&nbsp;</span>Third Research Question: How do Hong Kong protestors feel about violence?</a></span><ul class="toc-item"><li><span><a href="#Methods" data-toc-modified-id="Methods-2.4.1"><span class="toc-item-num">2.4.1&nbsp;&nbsp;</span>Methods</a></span></li><li><span><a href="#Results" data-toc-modified-id="Results-2.4.2"><span class="toc-item-num">2.4.2&nbsp;&nbsp;</span>Results</a></span></li></ul></li></ul></li><li><span><a href="#Discussion" data-toc-modified-id="Discussion-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Discussion</a></span></li></ul></div>
 <!-- #endregion -->
 
+<!-- #region {"heading_collapsed": true} -->
 # 時代革命: A Data Science Investigation About Past Protests Around the World
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 <img src="https://static01.nyt.com/images/2019/12/15/slideshows/15YIP-October-slide-KNHS/15YIP-October-slide-KNHS-superJumbo.jpg">
 
 [New York Times Photo by Lam Yik Fei ](https://www.nytimes.com/interactive/2019/world/year-in-pictures.html)
+<!-- #endregion -->
 
-
-#### (Work in Progress) A very slow photo gallery
-
-```{python}
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
-
-countries_dict = {
-    "HongKong":"https://upload.wikimedia.org/wikipedia/commons/5/54/Protest_against_the_Hong_Kong-China_extradition_law_in_NYC_20190609.png",
-    "LatinAmerica": "https://upload.wikimedia.org/wikipedia/commons/8/82/Latin_american_protests_montage.png"
-}
-img_link = ""
-```
-
-```{python}
-@interact
-def describe(column=list(countries_dict.keys())):    
-    plt.figure(figsize=(50,30))
-    img= mpimg.imread(countries_dict[column])
-    plt.axis('off')
-    imgplot = plt.imshow(img)
-```
-
+<!-- #region {"hidden": true} -->
 ## Overarching Question: How does violence impact mass mobilization?
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 **Why this question?** 
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 There's a revolutionary movement going on in Hong Kong. People here are mobilizing by the millions in the name of democracy. Sometimes the protests are peaceful; sometimes there are violent clashes. There are cases upon cases of police brutality documented by smartphones and news cameras. There are photos of protestors throwing bricks and molotov cocktails.  
 
 As students and teachers living on this island, we've seen protests ebb and flow around us physically and digitally. We've probably all heard a wide range of voices and opinions, especially related to who's to blame about protests. It's important for us to stay engaged and dig to find the truth. 
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 At the same time, 2019 saw protests the world round: Colombia/Venezuela, Turkey, Lebanon, Chile, Iraq, Kashmir, Sudan, France, Mexico, Uruguay, Ecuador, Haiti, Gaza, Spain, Pakistan, and more. [See a list here.](https://en.wikipedia.org/wiki/Category:2019_protests) 
 
-See photos here and [here](https://www.theguardian.com/world/2019/oct/25/protests-rage-around-the-world-hong-kong-lebanon-chile-catalonia-iraq). 
+See photos [here](https://www.theguardian.com/world/2019/oct/25/protests-rage-around-the-world-hong-kong-lebanon-chile-catalonia-iraq). 
 
 In many cases, protests emerge suddenly. 
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 So my question is **Why now? And why are these protests so explosive?**
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 Last month (November 2019), I listened to this podcast <a href = "https://www.stitcher.com/podcast/vox/today-explained/e/64953753">"Why is the world protesting?"</a> that covered the protests in Hong Kong, Chile, and Lebanon at the time. In that podcast, they mentioned that researchers at Harvard University have been studying how many protests have occurred, how protests succeed or fail, or how and why some turn violent. 
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 According to the researchers, it turns out that protests are on the rise around the world, but government violence has actually been decreasing. I wanted to see the trends in the data for myself. 
+<!-- #endregion -->
 
-
+<!-- #region {"heading_collapsed": true, "hidden": true} -->
 ## About the data sets
+<!-- #endregion -->
 
-```{python}
+```{python hidden=TRUE}
 #Include any import statements you will need
 import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
-```{python}
+```{python hidden=TRUE}
 globaldf = pd.read_csv('mmALL_020619_v15.tab', sep='\t')
 hongkongdf = pd.read_csv('hongkongdata-clean.csv')
 ```
 
+<!-- #region {"hidden": true} -->
 **What is this data about?**
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 <span class="mark">*Data set 1: Global Data on Mass Mobilization*</span>
 
 This dataset documents over 15,500 citizen-led protests around the world in 162 countries between 1990 and March 2017. Here, a protest is defined as a gathering of 50 or more people to make a demand of the **government**. For each protest, the dataset includes features such as protestor demands, the eventual outcomes, the protest size, and more. 
 
 The data set includes information about the protest, the time and location of the protest, the region and country of the protest, the main reasons for protesting, the state response, and more. 
+<!-- #endregion -->
 
-```{python code_folding=c("1")}
+```{python code_folding=c(), hidden=TRUE}
 list(globaldf.columns)
 ```
 
+<!-- #region {"hidden": true} -->
 <span class="burk">*Data set 2: Hong Kong Data*</span>
 
 This dataset documents Hong Kong anti-ELAB protestor's identities and opinions at the site of different protests from June 2019 to October 2019. The data comes from a set of 12 onsite surveys that have in total been answered by 6,688 respondents.
 
 The data set includes information about their education, their political stance, and their views on violence.
+<!-- #endregion -->
 
-```{python}
+```{python hidden=TRUE}
 list(hongkongdf.columns)
 ```
 
+<!-- #region {"hidden": true} -->
 **Where is this data from?**
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 <span class="mark">*Data set 1: Global Data on Mass Mobilization*</span>
 
 After looking up the researchers from the podcast, I found this data set: 
@@ -120,17 +116,20 @@ https://dataverse.harvard.edu/dataverse/MMdata
 (Clark, David; Regan, Patrick, 2016, "Mass Mobilization Protest Data", https://doi.org/10.7910/DVN/HTTWYL, Harvard Dataverse). https://massmobilization.shinyapps.io/yearlyChangeProtestBehavior/
 
 The main researchers for the Mass Mobilization project are David H. Clark (Binghamton University) and Patrick M. Regan (University of Notre Dame), and the data was made available by a research center at Harvard. The data was compiled from a selected number of English-speaking newspapers. 
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 <span class="burk">*Data set 2: Hong Kong Data*</span>
     
 I wanted to get some data related to the current anti-ELAB movements, so I found this data set initiated and maintained by a research team at Chinese University of Hong Kong: https://sites.google.com/view/antielabsurvey-eng/data-updated-until-oct-2019?authuser=0
 The team went out to where protests were happening and selected a random sample of protestors to survey on site. 
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 **How did this data set get cleaned?**
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 <span class="mark">*Data set 1: Global Data on Mass Mobilization*</span>
 
 I did not need to do much cleaning of the data myself, but I did exclude all data from the year 2017 because that year's data ends in March and thus is not a full year's worth of data. 
@@ -138,19 +137,22 @@ I did not need to do much cleaning of the data myself, but I did exclude all dat
 <span class="burk">*Data set 2: Hong Kong Data*</span>
 
 I had to exclude data from certain protest days when the researchers only collected demographic data and no data about opinions. I did this in Google Sheets. 
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 ## Subquestions
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 **What quantitative subquestions will you investigate?** 
+<!-- #endregion -->
 
-
+<!-- #region {"hidden": true} -->
 1. Are protests getting more violent around the world? 
 2. Do some regions of the world have more violent protests than others? 
 3. How is protest violence correlated with protest size, protest length, or protest outcome?
 4. Specific to Hong Kong, how do protestors feel about violence?
-
+<!-- #endregion -->
 
 # Methods and Results
 
@@ -181,13 +183,105 @@ Your answer here:
 
 ### Results 
 
-```{python}
-x_var_label = "startyear"
-y_var_label = "protesterviolence"
-z_var_label = "region"
+```{python echo=FALSE}
+def minlossmc(data_points_list):
+    m_domain = (0,2)
+    b_domain = (-3000, 3000)
+    min_loss = loss(m_domain[0], b_domain[0], data_points_list)
+    min_m = 0
+    min_b = 0
+    for i in range(1000):
+        curr_m = random.uniform(m_domain[0], m_domain[1])
+        curr_b = random.uniform(b_domain[0], b_domain[1])
+        curr_loss = loss(curr_m, curr_b, data_points_list)
+    #     animated_draw(curr_m, curr_b, curr_loss, ax)
+        if curr_loss < min_loss:
+            min_m = curr_m
+            min_b = curr_b
+            min_loss = curr_loss
+
+    return min_m, min_b
 ```
 
-```{python}
+```{python echo=FALSE}
+df_three_col = globaldf[["startyear", "protesterviolence", "region"]].dropna().values.tolist()  # creating new dataframe with 2 columns
+years_list = [x for [x,y,z] in df_three_col if x < 2016]  # copying data from dataframe to list
+violent_years_list = [x for [x,y,z] in df_three_col if y > 0 and x < 2017]  # copying data from dataframe to list
+asian_years_list = [x for [x,y,z] in df_three_col if z == 5 and x < 2017]  # copying data from dataframe to list
+violent_asian_years_list = [x for [x,y,z] in df_three_col if z == 5 and y > 0 and x < 2017] 
+```
+
+```{python echo=FALSE}
+years_dict = generate_counts_dict(years_list)
+violent_years_dict = generate_counts_dict(violent_years_list)
+violent_asian_years_dict = generate_counts_dict(violent_asian_years_list)
+asian_years_dict =  generate_counts_dict(asian_years_list)
+```
+
+```{python echo=TRUE}
+ax = plt.scatter(years_dict.keys(), years_dict.values(),c='green',alpha=0.5, label="Total Protests")
+ax = plt.scatter(violent_years_dict.keys(), violent_years_dict.values(),c='red',alpha=0.5, label="Violent Protests")
+violent_years_list = [(k, v) for k, v in violent_years_dict.items()] 
+years_list = [(k, v) for k, v in years_dict.items()] 
+
+print("Total protests slope and y-int:")
+m,b = minlossmc(years_list)
+plt.plot([1990, 2015], [b + m * 1990, b + m * 2015])
+print(m, b)
+
+print("Violent protests slope and y-int:")
+m,b = minlossmc(violent_years_list)
+plt.plot([1990, 2015], [b + m * 1990, b + m * 2015])
+print(m, b)
+
+#TO DO: add line of best fit
+
+plt.title("Protests in The World")
+plt.xlabel('Year')
+plt.ylabel('Number of Protests')
+plt.legend()
+```
+
+<!-- #region {"hide_input": true} -->
+This graph shows that protests have been on the rise in general, especially since 2010.
+<!-- #endregion -->
+
+```{python echo=FALSE}
+plt.scatter(asian_years_dict.keys(), asian_years_dict.values(),c='blue',alpha=0.5, label="Total Protests in Asia")
+plt.scatter(violent_asian_years_dict.keys(), violent_asian_years_dict.values(),color='red',alpha=0.5, label="Total Violent Protests in Asia")
+plt.title("Protests in Asia")
+plt.xlabel('Year')
+plt.ylabel('Number of Protests')
+plt.legend()
+```
+
+<!-- #region {"heading_collapsed": true} -->
+## Second Research Question: Do some regions of the world have more violent protests than others?
+<!-- #endregion -->
+
+<!-- #region {"hidden": true} -->
+### Methods
+<!-- #endregion -->
+
+<!-- #region {"heading_collapsed": true, "hidden": true} -->
+### Results
+<!-- #endregion -->
+
+## Second Research Question: 3. How is protest violence correlated with protest length?
+
+
+### Methods
+
+
+**How will you approach this question? Which data will you use? What data science tools/functions will you use?**
+
+
+Your answer here:
+
+
+### Results 
+
+```{python echo=FALSE}
 from datetime import datetime
 time_df = globaldf[["startyear", "startmonth", "startday","endyear", "endmonth", "endday", "protesterviolence"]]
 time_df = time_df.dropna()
@@ -201,86 +295,45 @@ for [startyear, startmonth, startday,endyear, endmonth, endday, protesterviolenc
     length_array.append([days, protesterviolence])
 ```
 
-```{python}
-df_three_col = globaldf[[x_var_label, y_var_label, z_var_label]]  # creating new dataframe with 2 columns
-df_three_col = globaldf.dropna() # removing rows with no response (NaN)
-years_list = [x for [x,y,z] in df_three_col.values]  # copying data from dataframe to list
-violent_years_list = [x for [x,y,z] in df_three_col.values if y > 0]  # copying data from dataframe to list
-asian_years_list = [x for [x,y,z] in df_three_col.values if z == 5]  # copying data from dataframe to list
-violent_asian_years_list = [x for [x,y,z] in df_three_col.values if z == 5 and y > 0]
+```{python echo=FALSE}
+non_violent_lengths = [i[0] for i in length_array if i[1] < 1 and i[0] > 1 and i[0] < 600]
+violent_lengths = [i[0] for i in length_array if i[1] > 0 and i[0] > 1 and i[0] < 600]
+
+figure, axes = plt.subplots()
+axes.boxplot(non_violent_lengths, vert=False)
+plt.xlabel('Non-violent protest lengths')
+plt.title("Do Non-Violent Protests Last Longer?")
 ```
 
-```{python}
-def generate_counts_dict(data_list):
-    data_dict = {}
-    for element in data_list:
-        if element in data_dict:
-            data_dict[element] = data_dict[element] + 1
-        else:
-            data_dict[element] = 1
-    return data_dict
-
-years_dict = generate_counts_dict(years_list)
-violent_years_dict = generate_counts_dict(violent_years_list)
-violent_asian_years_dict = generate_counts_dict(violent_asian_years_list)
-asian_years_dict =  generate_counts_dict(asian_years_list)
+```{python echo=FALSE}
+figure, axes = plt.subplots()
+axes.boxplot(violent_lengths, vert=False)
+plt.xlabel('Violent protest lengths')
+plt.title("Do Violent Protests Last Longer?")
 ```
 
+It's hard to say based on these box and whisker plots because there are so many outliers, so I decided to just look at the middle 50% of data. 
+
+
+## Third Research Question: How do Hong Kong protestors feel about violence?
+
 ```{python}
-plt.scatter(years_dict.keys(), years_dict.values(),c='green',alpha=0.5, label="Total Protests")
-plt.scatter(violent_years_dict.keys(), violent_years_dict.values(),c='red',alpha=0.5, label="Violent Protests")
-plt.xlabel('Year')
-plt.ylabel('Number of Protests')
-plt.legend()
+hongkongdf.
 ```
 
-<!-- #region {"heading_collapsed": true} -->
-## Second Research Question [Edit me]
-<!-- #endregion -->
-
-<!-- #region {"hidden": true} -->
 ### Methods
-<!-- #endregion -->
 
-<!-- #region {"hidden": true} -->
+
 **How will you approach this question? Which data will you use? What data science tools/functions will you use?**
-<!-- #endregion -->
 
-<!-- #region {"hidden": true} -->
+
 Your answer here:
-<!-- #endregion -->
 
-<!-- #region {"hidden": true} -->
+
 ### Results 
-<!-- #endregion -->
 
-<!-- #region {"hidden": true} -->
+
 **Include cells here to show the results, which could be either a calculation or a visualization.** 
-<!-- #endregion -->
-
-<!-- #region {"heading_collapsed": true} -->
-## Third Research Question [Edit me]
-<!-- #endregion -->
-
-<!-- #region {"hidden": true} -->
-### Methods
-<!-- #endregion -->
-
-<!-- #region {"hidden": true} -->
-**How will you approach this question? Which data will you use? What data science tools/functions will you use?**
-<!-- #endregion -->
-
-<!-- #region {"hidden": true} -->
-Your answer here:
-<!-- #endregion -->
-
-<!-- #region {"hidden": true} -->
-### Results 
-<!-- #endregion -->
-
-<!-- #region {"hidden": true} -->
-**Include cells here to show the results, which could be either a calculation or a visualization.** 
-<!-- #endregion -->
 
 <!-- #region {"heading_collapsed": true} -->
 # Discussion

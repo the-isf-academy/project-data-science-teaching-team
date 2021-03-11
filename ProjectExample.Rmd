@@ -57,8 +57,7 @@ import matplotlib.pyplot as plt
 ```
 
 ```{python}
-globaldf = pd.read_csv('mmALL_020619_v15.tab', sep='\t')
-hongkongdf = pd.read_csv('hongkongdata-clean.csv')
+global_df = pd.read_csv('mmALL_020619_v15.tab', sep='\t')
 ```
 
 **What is this data about?**
@@ -71,17 +70,7 @@ This dataset documents over 15,500 citizen-led protests around the world in 162 
 The data set includes information about the protest, the time and location of the protest, the region and country of the protest, the main reasons for protesting, the state response, and more. 
 
 ```{python code_folding=c()}
-globaldf.columns
-```
-
-<span class="burk">*Data set 2: Hong Kong Data*</span>
-
-This dataset documents Hong Kong anti-ELAB protestor's identities and opinions at the site of different protests from June 2019 to October 2019. The data comes from a set of 12 onsite surveys that have in total been answered by 6,688 respondents.
-
-The data set includes information about their education, their political stance, and their views on violence.
-
-```{python}
-hongkongdf.head()
+global_df.columns
 ```
 
 **Where is this data from?**
@@ -94,12 +83,6 @@ https://dataverse.harvard.edu/dataverse/MMdata
 (Clark, David; Regan, Patrick, 2016, "Mass Mobilization Protest Data", https://doi.org/10.7910/DVN/HTTWYL, Harvard Dataverse). https://massmobilization.shinyapps.io/yearlyChangeProtestBehavior/
 
 The main researchers for the Mass Mobilization project are David H. Clark (Binghamton University) and Patrick M. Regan (University of Notre Dame), and the data was made available by a research center at Harvard. The data was compiled from a selected number of English-speaking newspapers. 
-
-
-<span class="burk">*Data set 2: Hong Kong Data*</span>
-    
-I wanted to get some data related to the current anti-ELAB movements, so I found this data set initiated and maintained by a research team at Chinese University of Hong Kong: https://sites.google.com/view/antielabsurvey-eng/data-updated-until-oct-2019?authuser=0
-The team went out to where protests were happening and selected a random sample of protestors to survey on site. 
 
 
 **How did this data set get cleaned?**
@@ -122,8 +105,7 @@ I had to exclude data from certain protest days when the researchers only collec
 
 1. Are protests getting more violent around the world? 
 2. Do some regions of the world have more violent protests than others? 
-3. How is protest violence correlated with protest size, protest length, or protest outcome?
-4. Specific to Hong Kong, how do protestors feel about violence?
+3. Is state violence in response to protests on the rise?
 
 
 # Methods and Results
@@ -160,14 +142,15 @@ Then, I will separate violent and nonviolent protests and make the same charts f
 ### Results 
 
 ```{python}
-start_df = globaldf[["startyear", "protesterviolence"]].dropna()
+start_df = global_df[["startyear", "protesterviolence"]].dropna()
 protest_years = start_df["startyear"].unique()
+protest_years.sort()
 protest_counts = []
 for year in protest_years:
     year_count = start_df.loc[start_df["startyear"] == year]["startyear"].count()
     protest_counts.append(year_count)
 
-plt.scatter(protest_years, protest_counts)
+plt.plot(protest_years, protest_counts)
 plt.title("Protests in The World")
 plt.xlabel('Year')
 plt.ylabel('Number of Protests')
@@ -177,6 +160,7 @@ plt.ylabel('Number of Protests')
 ```{python}
 start_violent_df = start_df.loc[(start_df["protesterviolence"] == 1)]
 violent_protest_years = start_violent_df["startyear"].unique()
+violent_protest_years.sort()
 violent_protest_counts = []
 for year in violent_protest_years:
     year_count = start_violent_df.loc[start_violent_df["startyear"] == year]["startyear"].count()
@@ -184,6 +168,7 @@ for year in violent_protest_years:
     
 start_nonviolent_df = start_df.loc[(start_df["protesterviolence"] == 0)]
 nonviolent_protest_years = start_nonviolent_df["startyear"].unique()
+nonviolent_protest_years.sort()
 nonviolent_protest_counts = []
 for year in nonviolent_protest_years:
     year_count = start_nonviolent_df.loc[start_nonviolent_df["startyear"] == year]["startyear"].count()
@@ -191,8 +176,8 @@ for year in nonviolent_protest_years:
 ```
 
 ```{python}
-ax = plt.scatter(nonviolent_protest_years, nonviolent_protest_counts,c='green',alpha=0.5, label="Non-Violent Protests")
-ax = plt.scatter(violent_protest_years, violent_protest_counts,c='red',alpha=0.5, label="Violent Protests")
+ax = plt.plot(nonviolent_protest_years, nonviolent_protest_counts,c='green',alpha=0.5, label="Non-Violent Protests")
+ax = plt.plot(violent_protest_years, violent_protest_counts,c='red',alpha=0.5, label="Violent Protests")
 
 plt.title("Protests in The World")
 plt.xlabel('Year')
@@ -216,7 +201,7 @@ To answer this question, I will divide all of the protests by their region and m
 ### Results
 
 ```{python}
-regions_df = globaldf[["startyear", "protesterviolence", "region"]].dropna()
+regions_df = global_df[["startyear", "protesterviolence", "region"]].dropna()
 south_am_counts = regions_df.loc[regions_df["region"] == 1]["region"].count()
 central_am_counts = regions_df.loc[regions_df["region"] == 2]["region"].count()
 north_am_counts = regions_df.loc[regions_df["region"] == 3]["region"].count()
@@ -298,76 +283,97 @@ plt.legend()
 With this chart, I get even more insight into the situation. While the African region has more violent protests than other regions, it only has slightly more than the European and Asian region. Overall, violent protests make up a smaller percentage of all protests than non-violent ones.
 
 
-To answer my question then, it seems that the European, Asian, and African regions have the most violent protests while the African region has the high percentage of violent protests compared to the overall number of protests.
+To answer my question then, it seems that the European, Asian, and African regions have the most violent protests while the African region has the highest percentage of violent protests compared to the overall number of protests.
 
 
-## Second Research Question: 3. How is protest violence correlated with protest length?
-
-
-### Methods
-
-
-**How will you approach this question? Which data will you use? What data science tools/functions will you use?**
-
-
-Your answer here:
-
-
-### Results 
-
-```{python tags=c("remove_input")}
-from datetime import datetime
-time_df = globaldf[["startyear", "startmonth", "startday","endyear", "endmonth", "endday", "protesterviolence"]]
-time_df = time_df.dropna()
-length_array = []
-
-for [startyear, startmonth, startday,endyear, endmonth, endday, protesterviolence] in time_df.values:
-    start = datetime(int(startyear), int(startmonth), int(startday))
-    end  = datetime(int(endyear), int(endmonth), int(endday))             
-    duration = end - start                     
-    days  = duration.days  + 1 # if a protest starts and ends on the same day, we consider that one day of protest.
-    length_array.append([days, protesterviolence])
-```
-
-```{python tags=c("remove_input")}
-non_violent_lengths = [i[0] for i in length_array if i[1] < 1 and i[0] > 1 and i[0] < 600]
-violent_lengths = [i[0] for i in length_array if i[1] > 0 and i[0] > 1 and i[0] < 600]
-
-figure, axes = plt.subplots()
-axes.boxplot(non_violent_lengths, vert=False)
-plt.xlabel('Non-violent protest lengths')
-plt.title("Do Non-Violent Protests Last Longer?")
-```
-
-```{python tags=c("remove_input")}
-figure, axes = plt.subplots()
-axes.boxplot(violent_lengths, vert=False)
-plt.xlabel('Violent protest lengths')
-plt.title("Do Violent Protests Last Longer?")
-```
-
-It's hard to say based on these box and whisker plots because there are so many outliers, so I decided to just look at the middle 50% of data. 
-
-
-## Third Research Question: How do Hong Kong protestors feel about violence?
+## Third Research Question: Is state violence on the rise?
 
 ```{python}
-hongkongdf.
+start_state_df = global_df[["startyear", 'stateresponse1', 'stateresponse2', 'stateresponse3', 'stateresponse4',
+       'stateresponse5', 'stateresponse6', 'stateresponse7']]
+
+set(list(start_state_df['stateresponse1']) + list(start_state_df['stateresponse2']) + list(start_state_df['stateresponse3']) + list(start_state_df['stateresponse4']) + list(start_state_df['stateresponse5']) + list(start_state_df['stateresponse6']) + list(start_state_df['stateresponse7']))
+
 ```
 
-### Methods
+Here I have to make a decision about which state responses count as violent. Some of the responses like beatings, shootings, and killings are obviously violent and some like accommodation and ignore are obviously nonviolent. However, arrests and crowd dispersal seem a less clear.
+
+I will perform the same analysis twice, once including these two in violent responses and once including them in non-violent responses.
 
 
-**How will you approach this question? Which data will you use? What data science tools/functions will you use?**
+### Strict Violence Interpretion (excluding arrests and crowd dispersal)
 
+```{python}
+violent_state_responses = ['beatings', 'killings', 'shootings']
 
-Your answer here:
+start_state_violence_df = start_state_df[start_state_df.stateresponse1.isin(violent_state_responses) | start_state_df.stateresponse2.isin(violent_state_responses) | start_state_df.stateresponse3.isin(violent_state_responses) | start_state_df.stateresponse4.isin(violent_state_responses) | start_state_df.stateresponse5.isin(violent_state_responses) | start_state_df.stateresponse6.isin(violent_state_responses) | start_state_df.stateresponse7.isin(violent_state_responses)]
+start_state_nonviolent_df = start_state_df[~start_state_df.stateresponse1.isin(violent_state_responses) & ~start_state_df.stateresponse2.isin(violent_state_responses) & ~start_state_df.stateresponse3.isin(violent_state_responses) & ~start_state_df.stateresponse4.isin(violent_state_responses) & ~start_state_df.stateresponse5.isin(violent_state_responses) & ~start_state_df.stateresponse6.isin(violent_state_responses) & ~start_state_df.stateresponse7.isin(violent_state_responses)]
 
+```
 
-### Results 
+```{python}
+violent_state_years = start_state_violence_df["startyear"].dropna().unique()
+violent_state_years.sort()
+violent_state_counts = []
+for year in list(violent_state_years):
+    year_count = start_state_violence_df.loc[start_state_violence_df["startyear"] == year]["startyear"].count()
+    violent_state_counts.append(year_count)
+    
+nonviolent_state_years = start_state_nonviolent_df["startyear"].dropna().unique()
+nonviolent_state_years.sort()
+nonviolent_state_counts = []
+for year in nonviolent_state_years:
+    year_count = start_state_nonviolent_df.loc[start_state_nonviolent_df["startyear"] == year]["startyear"].count()
+    nonviolent_state_counts.append(year_count)
+```
 
+```{python}
+ax = plt.plot(nonviolent_state_years, nonviolent_state_counts,c='green',alpha=0.5, label="Non-Violent State Response")
+ax = plt.plot(violent_state_years, violent_state_counts,c='red',alpha=0.5, label="Violent State Response")
 
-**Include cells here to show the results, which could be either a calculation or a visualization.** 
+plt.title("State Responses to Protests in The World")
+plt.xlabel('Year')
+plt.ylabel('Number of Responses')
+plt.legend()
+```
+
+### Inclusive Violence Interpretation (Including arrests and crowd dispersal)
+
+```{python}
+violent_state_responses = ['beatings', 'killings', 'shootings', 'arrests', 'crowd dispersal']
+
+start_state_violence_df = start_state_df[start_state_df.stateresponse1.isin(violent_state_responses) | start_state_df.stateresponse2.isin(violent_state_responses) | start_state_df.stateresponse3.isin(violent_state_responses) | start_state_df.stateresponse4.isin(violent_state_responses) | start_state_df.stateresponse5.isin(violent_state_responses) | start_state_df.stateresponse6.isin(violent_state_responses) | start_state_df.stateresponse7.isin(violent_state_responses)]
+start_state_nonviolent_df = start_state_df[~start_state_df.stateresponse1.isin(violent_state_responses) & ~start_state_df.stateresponse2.isin(violent_state_responses) & ~start_state_df.stateresponse3.isin(violent_state_responses) & ~start_state_df.stateresponse4.isin(violent_state_responses) & ~start_state_df.stateresponse5.isin(violent_state_responses) & ~start_state_df.stateresponse6.isin(violent_state_responses) & ~start_state_df.stateresponse7.isin(violent_state_responses)]
+
+```
+
+```{python}
+violent_state_years = start_state_violence_df["startyear"].dropna().unique()
+violent_state_years.sort()
+violent_state_counts = []
+for year in list(violent_state_years):
+    year_count = start_state_violence_df.loc[start_state_violence_df["startyear"] == year]["startyear"].count()
+    violent_state_counts.append(year_count)
+    
+nonviolent_state_years = start_state_nonviolent_df["startyear"].dropna().unique()
+nonviolent_state_years.sort()
+nonviolent_state_counts = []
+for year in nonviolent_state_years:
+    year_count = start_state_nonviolent_df.loc[start_state_nonviolent_df["startyear"] == year]["startyear"].count()
+    nonviolent_state_counts.append(year_count)
+```
+
+```{python}
+ax = plt.plot(nonviolent_state_years, nonviolent_state_counts,c='green',alpha=0.5, label="Non-Violent State Response")
+ax = plt.plot(violent_state_years, violent_state_counts,c='red',alpha=0.5, label="Violent State Response")
+
+plt.title("State Responses to Protests in The World")
+plt.xlabel('Year')
+plt.ylabel('Number of Responses')
+plt.legend()
+```
+
+Comparing these two plots, it seems that state violence is not on the rise if the definition **excludes** arrests and crowd dispersals. However, it appears that state violence is on the rise if you **include** arrests and crowd dispersal.
 
 
 # Discussion
@@ -378,11 +384,17 @@ Your answer here:
 
 Your answer here:
 
+I discovered that while it is true that protests are on the rise, we first have to decide what a violent state response means. If a violent response does not include arrests and crowd dispersals, violent responses are about the same. However, if you include arrests and crowd dispersals, violent responses are increasing with the increasing protests.
+
+Additionally, I discovered that the trends are different in different regions of the world. Specifically, I discovered that the European, Asian, and African regions of the world have the most violent protests.
+
 
 **What was most surprising? What made sense? How does this confirm or disprove other sources?**
 
 
 Your answer here:
+
+The researchers on the podcast I listened to were mostly accurate in saying that protests were on the rise but violent state responses were falling. Based on their claim, it seems like the researchers were not including arrests and crowd dispersal in their definition of violence. While I can understand this approach, I believe that it could obscure the fact that states are still doing more to quell protests.
 
 
 **Why does it matter?**
@@ -390,14 +402,24 @@ Your answer here:
 
 Your answer here:
 
+Especially as digital and chemical weapons and surveillance technology advances, I think it is important to follow how states respond to protests, including through arrests and crowd dispersal. If states are using increasingly dangerous weapons to disperse crowds or using arrests to begin tracking protesters after a protest, I believe that these responses should be classified as violent. In this case, we should be concerned about the trends shown in this data, perhaps contrary to the perspective of the researchers.
+
 
 **Describe an algorithmic choice that you made and how your results could have changed if you made that choice differently.**
 
 
 Your answer here:
 
+One algorithmic choice I made came in filtering the state responses. Here, I chose to filter the data in two different ways to see how it affected the plots I produced. By choosing to explore a couple different ways of filtering the data, I discovered an insight into the data which I believe is important to share.
+
 
 **Let's go deeper. What qualitative questions do you have that cannot be answered with quantitative analysis?**
 
 
 Your answer here:
+
+My main qualitative questions are around people's definitions of violence. If I were to continue this research, I would try to interview people about what they think constitutes a violent action and why. Additionally, I would do more research into political and bio ethics to help me understand how other researchers are defining and understanding state violence.
+
+```{python}
+
+```
